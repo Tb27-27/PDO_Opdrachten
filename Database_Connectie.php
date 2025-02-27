@@ -15,7 +15,7 @@ $options = [
 try 
 {
      $pdo = new PDO($dsn, $user, $pass, $options);
-     echo "Connectie gemaakt!";
+     echo "<script>console.log(`Connectie gemaakt!`);</script>";
 } 
 catch (\PDOException $e) 
 {
