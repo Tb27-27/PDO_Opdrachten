@@ -43,8 +43,6 @@
     }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,8 +64,5 @@
 
         <input type="submit" name="submit_knop"><br><br>
     </form>
-    
-
-   
 </body>
 </html>
