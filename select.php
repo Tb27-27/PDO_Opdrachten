@@ -68,13 +68,19 @@ echo    "<table>
             </tr>";
 
 foreach ($rows as $row) {
+
+    $product_code = $row['product_code'];
+    $product_naam = $row['product_naam'];
+    $prijs_per_stuk = $row['prijs_per_stuk'];
+    $omschrijving = $row['omschrijving'];
+
     echo  "<tr>
-                <td>" . $row['product_code'] . "</td>
-                <td>" . $row['product_naam'] . "</td>
-                <td>" . $row['prijs_per_stuk'] . "</td>
-                <td>" . $row['omschrijving'] . "</td>
-                <td>" . "<a href='' class='edit_button'>Edit</a>". "</td>
-                <td>" . "<a href='' class='delete_button'>Delete</a>" . "</td>
+                <td> $product_code </td>
+                <td> $product_naam </td>
+                <td> $prijs_per_stuk </td>
+                <td> $omschrijving </td>
+                <td> <a href='update.php?id=$product_code' class='edit_button'>Edit</a> </td>
+                <td> <a href='' class='delete_button'>Delete</a> </td>
             </tr>";
 }
 
