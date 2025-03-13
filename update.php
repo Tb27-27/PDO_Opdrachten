@@ -4,39 +4,40 @@
     require 'Database_Connectie.php';
     
     // Parameterwaarden definiëren
+try {
     if (isset($_POST["submit_knop"])) {
-        try {
-            $product_naam = $_POST['product_naam'];
-            $prijs_per_stuk = $_POST['prijs_per_stuk'];
-            $omschrijving = $_POST['omschrijving'];
-            $product_code = $_GET['id'];
-        
-            $sql = "UPDATE producten 
-            SET product_naam = :product_naam, prijs_per_stuk = :prijs_per_stuk, omschrijving = :omschrijving 
-            WHERE product_code = :product_code";
+        $product_naam = $_POST['product_naam'];
+        $prijs_per_stuk = $_POST['prijs_per_stuk'];
+        $omschrijving = $_POST['omschrijving'];
+        $product_code = $_GET['id'];
     
-            $stmt = $pdo->prepare($sql);
-    
-            $placeholders = [
-                "product_naam" => $product_naam,
-                "prijs_per_stuk" => $prijs_per_stuk,
-                "omschrijving" => $omschrijving,
-                "product_code" => $product_code
-            ];
-    
-            $stmt->execute($placeholders);
-    
-            // Query uitvoeren met execute
-            if ($stmt) {
-                echo "Record succesvol bijgewerkt.<br><br>";
-                header("Refresh:3; url = select.php");
-            } else {
-                echo "Fout bij bijwerken van record.<br><br>";
-            }
-        } catch (PDOException $e) {
-            echo "Er is een fout opgetreden: " + $e->getMessage() + "<br>";
+        $sql = "UPDATE producten 
+        SET product_naam = :product_naam, prijs_per_stuk = :prijs_per_stuk, omschrijving = :omschrijving 
+        WHERE product_code = :product_code";
+
+        $stmt = $pdo->prepare($sql);
+
+        $placeholders = [
+            "product_naam" => $product_naam,
+            "prijs_per_stuk" => $prijs_per_stuk,
+            "omschrijving" => $omschrijving,
+            "product_code" => $product_code
+        ];
+
+        $stmt->execute($placeholders);
+
+        // Query uitvoeren met execute
+        if ($stmt) {
+            echo "Record succesvol bijgewerkt.<br><br>";
+            header("Refresh:3; url = select.php");
+        } else {
+            echo "Fout bij bijwerken van record.<br><br>";
         }
-    }
+    } 
+} 
+catch (PDOException $e) {
+    echo "Er is een fout opgetreden: " + $e->getMessage() + "<br>";
+}
     
 
 ?>
