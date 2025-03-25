@@ -80,7 +80,7 @@ foreach ($rows as $row) {
                 <td> $prijs_per_stuk </td>
                 <td> $omschrijving </td>
                 <td> <a href='update.php?id=$product_code' class='edit_button'>Edit</a> </td>
-                <td> <a href='' class='delete_button'>Delete</a> </td>
+                <td> <a href='delete.php?id=$product_code' class='delete_button'>Delete</a> </td>
             </tr>";
 }
 
