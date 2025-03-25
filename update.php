@@ -10,9 +10,10 @@ try {
         $prijs_per_stuk = $_POST['prijs_per_stuk'];
         $omschrijving = $_POST['omschrijving'];
         $product_code = $_GET['id'];
+        $categorie = $_POST['categorie'];
     
         $sql = "UPDATE producten 
-        SET product_naam = :product_naam, prijs_per_stuk = :prijs_per_stuk, omschrijving = :omschrijving 
+        SET product_naam = :product_naam, prijs_per_stuk = :prijs_per_stuk, omschrijving = :omschrijving, categorie = :categorie
         WHERE product_code = :product_code";
 
         $stmt = $pdo->prepare($sql);
@@ -21,7 +22,8 @@ try {
             "product_naam" => $product_naam,
             "prijs_per_stuk" => $prijs_per_stuk,
             "omschrijving" => $omschrijving,
-            "product_code" => $product_code
+            "product_code" => $product_code,
+            "categorie" => $categorie
         ];
 
         $stmt->execute($placeholders);
@@ -60,6 +62,15 @@ catch (PDOException $e) {
 
         <label for="omschrijving">Omschrijving:</label><br>
         <input type="text" name="omschrijving" placeholder="Omschrijving" required pattern="[A-Za-z\s]+"><br><br>
+
+        <label for="categorie">Categorie:</label><br>
+        <select name="categorie" placeholder="Categorie" required pattern="[A-Za-z\s]+">
+            <!-- drinken, eten, kleding, electronica -->
+            <option value="drinken">Drinken</option>
+            <option value="eten">Eten</option>
+            <option value="kleding">Kleding</option>
+            <option value="electronica">Electronica</option>
+        </select><br><br>
 
         <input type="submit" name="submit_knop"><br><br>
     </form>

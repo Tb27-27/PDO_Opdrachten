@@ -8,8 +8,9 @@
         $productNaam = $_POST['product_naam'];
         $prijsPerStuk = $_POST['prijs_per_stuk'];
         $omschrijving = $_POST['omschrijving'];
+        $categorie = $_POST['categorie'];
 
-        if (!$productNaam || !$prijsPerStuk || !$omschrijving) {
+        if (!$productNaam || !$prijsPerStuk || !$omschrijving || !$categorie) {
             echo "Een of meerdere velden zijn leeg!";
         }
         else
@@ -18,27 +19,32 @@
             'insert into producten (
                 product_naam, 
                 prijs_per_stuk, 
-                omschrijving
+                omschrijving,
+                categorie
                 ) 
             values (
                 :product_naam, 
                 :prijs_per_stuk, 
-                :omschrijving
+                :omschrijving,
+                :categorie
             )';
 
             $result=$pdo->prepare($query);
             $data= array(
                 "product_naam" => $productNaam,
                 "prijs_per_stuk" => $prijsPerStuk,
-                "omschrijving" => $omschrijving
+                "omschrijving" => $omschrijving,
+                "categorie" => $categorie
             );
+
             $result->execute($data);
 
             echo 
             "Product succesvol toegevoegd: <br>
             Naam: $productNaam <br>
             Prijs per stuk: $prijsPerStuk <br>
-            Omschrijving: $omschrijving <br> <br>";
+            Omschrijving: $omschrijving <br> 
+            Categorie: $categorie <br><br>";
         }
     }
 ?>
@@ -61,6 +67,15 @@
 
         <label for="omschrijving">Omschrijving:</label><br>
         <input type="text" name="omschrijving" placeholder="Omschrijving" required pattern="[A-Za-z\s]+"><br><br>
+
+        <label for="categorie">Categorie:</label><br>
+        <select name="categorie" placeholder="Categorie" required pattern="[A-Za-z\s]+">
+            <!-- drinken, eten, kleding, electronica -->
+            <option value="drinken">Drinken</option>
+            <option value="eten">Eten</option>
+            <option value="kleding">Kleding</option>
+            <option value="electronica">Electronica</option>
+        </select><br><br>
 
         <input type="submit" name="submit_knop"><br><br>
     </form>

@@ -63,6 +63,7 @@ echo    "<table>
                 <th>Naam</th>
                 <th>Prijs per stuk</th>
                 <th>Omschrijving</th>
+                <th>Categorie</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>";
@@ -73,12 +74,14 @@ foreach ($rows as $row) {
     $product_naam = $row['product_naam'];
     $prijs_per_stuk = $row['prijs_per_stuk'];
     $omschrijving = $row['omschrijving'];
+    $categorie = $row['categorie'];
 
     echo  "<tr>
                 <td> $product_code </td>
                 <td> $product_naam </td>
                 <td> $prijs_per_stuk </td>
                 <td> $omschrijving </td>
+                <td> $categorie </td>
                 <td> <a href='update.php?id=$product_code' class='edit_button'>Edit</a> </td>
                 <td> <a href='delete.php?id=$product_code' class='delete_button'>Delete</a> </td>
             </tr>";
